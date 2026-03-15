@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ASRS Analytics Pro | AutoProcess</title>
+    <title>ASRS Analytics Pro | Manuel Rivera</title>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -12,25 +12,21 @@
         :root { --bg-dark: #0f111a; --card-bg: #1a1d2b; --accent: #008ffb; --text-main: #e0e6ed; --success: #00e396; }
         body { background-color: var(--bg-dark); color: var(--text-main); font-family: 'Segoe UI', sans-serif; }
         .card { background-color: var(--card-bg); border: none; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.4); margin-bottom: 20px; }
-        .header-section { background: linear-gradient(90deg, #1a1d2b 0%, #0f111a 100%); padding: 1.5rem 0; border-bottom: 1px solid #2d324a; margin-bottom: 2rem; }
         .filter-pane { background-color: var(--card-bg); padding: 1.5rem; border-radius: 12px; border: 1px solid #2d324a; }
         .form-select { background-color: #25293d !important; border: 1px solid #3d4466 !important; color: white !important; }
         optgroup { color: #8892b0; font-weight: bold; font-style: normal; background-color: #1a1d2b;}
-        option { color: white; font-weight: normal; }
         .btn-primary { background-color: var(--accent); border: none; font-weight: 600; padding: 10px; }
         .kpi-title { font-size: 0.75rem; text-transform: uppercase; color: #8892b0; letter-spacing: 1px; }
         .kpi-value { font-size: 1.8rem; font-weight: 700; }
         #loader { display: none; position: fixed; top: 20px; right: 20px; z-index: 9999; }
         
-        /* Estilos para la tabla */
+        /* Tabla */
         .table-custom { color: var(--text-main); font-size: 0.9rem; margin-bottom: 0; }
         .table-custom thead { background-color: #25293d; position: sticky; top: 0; z-index: 1; }
         .table-custom th { border-bottom: 2px solid #3d4466; color: #8892b0; font-weight: 600; text-transform: uppercase; font-size: 0.75rem;}
         .table-custom td { border-bottom: 1px solid #2d324a; vertical-align: middle; }
-        .table-custom tbody tr:hover { background-color: rgba(0, 143, 251, 0.05); }
         .table-container { max-height: 400px; overflow-y: auto; border-radius: 8px; border: 1px solid #2d324a; }
         
-        /* Footer Firma */
         .footer-signature { border-top: 1px solid #2d324a; padding-top: 15px; margin-top: 40px; color: #8892b0; font-size: 0.85rem; }
     </style>
 </head>
@@ -72,69 +68,21 @@
                 <select id="selMachine" class="form-select" onchange="refreshDashboard()">
                     <option value="0">--- Todos los Activos L504 ---</option>
                     <optgroup label="CRANES (Transelevadores)">
-                        <option value="L504-CRANE01">L504-CRANE01</option>
-                        <option value="L504-CRANE02">L504-CRANE02</option>
-                        <option value="L504-CRANE03">L504-CRANE03</option>
-                        <option value="L504-CRANE04">L504-CRANE04</option>
-                        <option value="L504-CRANE05">L504-CRANE05</option>
-                        <option value="L504-CRANE06">L504-CRANE06</option>
-                        <option value="L504-CRANE07">L504-CRANE07</option>
-                        <option value="L504-CRANE08">L504-CRANE08</option>
-                        <option value="L504-CRANE09">L504-CRANE09</option>
-                        <option value="L504-CRANE10">L504-CRANE10</option>
+                        <option value="L504-CRANE01">L504-CRANE01</option><option value="L504-CRANE02">L504-CRANE02</option>
+                        <option value="L504-CRANE03">L504-CRANE03</option><option value="L504-CRANE04">L504-CRANE04</option>
+                        <option value="L504-CRANE05">L504-CRANE05</option><option value="L504-CRANE06">L504-CRANE06</option>
+                        <option value="L504-CRANE07">L504-CRANE07</option><option value="L504-CRANE08">L504-CRANE08</option>
+                        <option value="L504-CRANE09">L504-CRANE09</option><option value="L504-CRANE10">L504-CRANE10</option>
                         <option value="L504-CRANE11">L504-CRANE11</option>
                     </optgroup>
                     <optgroup label="PRESS ROBOTS">
-                        <option value="L504-400B">L504-400B</option>
-                        <option value="L504-500A">L504-500A</option>
-                        <option value="L504-500B">L504-500B</option>
-                        <option value="L504-600A">L504-600A</option>
+                        <option value="L504-400B">L504-400B</option><option value="L504-500A">L504-500A</option>
+                        <option value="L504-500B">L504-500B</option><option value="L504-600A">L504-600A</option>
                         <option value="L504-600B">L504-600B</option>
                     </optgroup>
-                    <optgroup label="HORSESHOES">
-                        <option value="L504-HS400B">L504-HS400B</option>
-                        <option value="L504-HS500A">L504-HS500A</option>
-                        <option value="L504-HS500B">L504-HS500B</option>
-                        <option value="L504-HS600A">L504-HS600A</option>
-                        <option value="L504-HS600B">L504-HS600B</option>
-                    </optgroup>
-                    <optgroup label="ROBOTS (Carga/Descarga)">
-                        <option value="L504-LOAD ROBOT 1">L504-LOAD ROBOT 1</option>
-                        <option value="L504-LOAD ROBOT 2">L504-LOAD ROBOT 2</option>
-                        <option value="L504-UNLOAD ROBOT 1">L504-UNLOAD ROBOT 1</option>
-                        <option value="L504-UNLOAD ROBOT 2">L504-UNLOAD ROBOT 2</option>
-                    </optgroup>
-                    <optgroup label="CONVEYORS (CC01 / CC02 / CC03)">
-                        <option value="L504-CC01">L504-CC01</option>
-                        <option value="L504-CC01-CRUZBELT">L504-CC01-CRUZBELT</option>
-                        <option value="L504-CC01-ITR">L504-CC01-ITR</option>
-                        <option value="L504-CC01-ITR-ST">L504-CC01-ITR-ST</option>
-                        <option value="L504-CC01-NBC">L504-CC01-NBC</option>
-                        <option value="L504-CC01-NBS">L504-CC01-NBS</option>
-                        <option value="L504-CC01-NBS90">L504-CC01-NBS90</option>
-                        <option value="L504-CC01-UBT">L504-CC01-UBT</option>
-                        <option value="L504-CC02">L504-CC02</option>
-                        <option value="L504-CC02-NBS">L504-CC02-NBS</option>
-                        <option value="L504-CC03">L504-CC03</option>
-                        <option value="L504-CC03-ITR">L504-CC03-ITR</option>
-                        <option value="L504-CC03-NBC">L504-CC03-NBC</option>
-                        <option value="L504-CC03-NBS">L504-CC03-NBS</option>
-                    </optgroup>
-                    <optgroup label="ZONA 12 & ZONA 13">
-                        <option value="L504-Z12-GABINETES">L504-Z12-GABINETES</option>
+                    <optgroup label="ZONA 12 & 13">
                         <option value="L504-Z12-INTRALOX">L504-Z12-INTRALOX</option>
-                        <option value="L504-Z12-MOTOPOLIN">L504-Z12-MOTOPOLIN</option>
-                        <option value="L504-Z12-TIL">L504-Z12-TIL</option>
-                        <option value="L504-Z13-CENTRADOR">L504-Z13-CENTRADOR</option>
-                        <option value="L504-Z13-GABINETES">L504-Z13-GABINETES</option>
                         <option value="L504-Z13-INTRALOX">L504-Z13-INTRALOX</option>
-                        <option value="L504-Z13-MOTOPOLIN">L504-Z13-MOTOPOLIN</option>
-                    </optgroup>
-                    <optgroup label="PLUMMER MACHINES & OTROS">
-                        <option value="L504-PLMT01">L504-PLMT01</option>
-                        <option value="L504-PLMT02">L504-PLMT02</option>
-                        <option value="L504-PLMT03">L504-PLMT03</option>
-                        <option value="L504-SERVIDORES">L504-SERVIDORES</option>
                     </optgroup>
                 </select>
             </div>
@@ -166,24 +114,15 @@
     </div>
 
     <div class="card p-4">
-        <h5 class="mb-4 text-muted"><i class="bi bi-tools"></i> Detalle de Averías y Tiempos de Paro</h5>
+        <h5 class="mb-4 text-muted"><i class="bi bi-tools"></i> Detalle de Averías</h5>
         <div class="table-container">
-            <table class="table table-custom table-borderless">
+            <table class="table table-custom">
                 <thead>
                     <tr>
-                        <th width="10%">Orden</th>
-                        <th width="15%">Fecha Inicio</th>
-                        <th width="15%">Máquina</th>
-                        <th width="10%">Tiempo (min)</th>
-                        <th width="15%">Usuario</th>
-                        <th width="35%">Descripción de la Falla</th>
+                        <th>Orden</th><th>Fecha</th><th>Máquina</th><th>Min</th><th>Usuario</th><th>Descripción</th>
                     </tr>
                 </thead>
-                <tbody id="tableBody">
-                    <tr>
-                        <td colspan="6" class="text-center text-muted py-4">Cargando registros...</td>
-                    </tr>
-                </tbody>
+                <tbody id="tableBody"></tbody>
             </table>
         </div>
     </div>
@@ -191,7 +130,6 @@
     <footer class="footer-signature text-center">
         Desarrollado por <strong style="color: var(--text-main);">Manuel Rivera</strong> | Área ASRS - Goodyear
     </footer>
-
 </div>
 
 <script>
@@ -201,144 +139,96 @@
 
     async function refreshDashboard() {
         document.getElementById('loader').style.display = 'block';
-
         const yearStr = document.getElementById('selYear').value;
         const monthStr = document.getElementById('selMonth').value;
         const machine = document.getElementById('selMachine').value;
 
-        // 1. OBTENER DATOS DE LA GRÁFICA
+        // --- Lógica de Fechas para el Servidor ---
         let dato = `${yearStr}-${monthStr}`;
         let dato1 = `${parseInt(yearStr) - 1}-${monthStr}`;
-        
-        let m = parseInt(monthStr);
-        let y = parseInt(yearStr);
+        let m = parseInt(monthStr), y = parseInt(yearStr);
         let dato6, dato7;
-        
         if (m > 2) {
-            let m1 = m - 1; let m2 = m - 2;
-            dato6 = y + "-" + (m1 < 10 ? "0"+m1 : m1);
-            dato7 = y + "-" + (m2 < 10 ? "0"+m2 : m2);
+            dato6 = y + "-" + (m-1 < 10 ? "0"+(m-1) : m-1);
+            dato7 = y + "-" + (m-2 < 10 ? "0"+(m-2) : m-2);
         } else if (m === 2) {
-            dato6 = y + "-01";
-            dato7 = (y - 1) + "-12";
+            dato6 = y + "-01"; dato7 = (y-1) + "-12";
         } else {
-            dato6 = (y - 1) + "-12";
-            dato7 = (y - 1) + "-11";
+            dato6 = (y-1) + "-12"; dato7 = (y-1) + "-11";
         }
 
-        const paramsChart = new URLSearchParams();
-        paramsChart.append('fecha', dato);
-        paramsChart.append('fecha_past', dato1);
-        paramsChart.append('room', 'DIV-B');
-        paramsChart.append('loc', 'AREA-ASRS');
-        paramsChart.append('fld', machine === "0" ? "" : machine);
-        paramsChart.append('type', '1');
-        paramsChart.append('fecha1', dato6);
-        paramsChart.append('fecha2', dato7);
-        paramsChart.append('subtype', '3');
-        paramsChart.append('target[]', '0'); 
+        const commonParams = new URLSearchParams();
+        commonParams.append('fecha', dato);
+        commonParams.append('room', 'DIV-B');
+        commonParams.append('loc', 'AREA-ASRS');
+        commonParams.append('fld', machine === "0" ? "" : machine);
 
         try {
+            // 1. Gráfica y KPIs
+            const chartBody = new URLSearchParams(commonParams);
+            chartBody.append('fecha_past', dato1);
+            chartBody.append('type', '1');
+            chartBody.append('fecha1', dato6);
+            chartBody.append('fecha2', dato7);
+            chartBody.append('subtype', '3');
+            chartBody.append('target[]', '0');
+
             const respChart = await fetch(API_CHART, { 
                 method: 'POST', 
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: paramsChart.toString() 
+                body: chartBody.toString() 
             });
-
             const data = await respChart.json();
             const series = data[1] || [];
-            const labels = Array.from({length: series.length}, (_, i) => i + 1);
-            
+
+            // --- CÁLCULO DE PROMEDIO REAL ---
             const total = series.reduce((sum, val) => sum + parseFloat(val || 0), 0);
-            document.getElementById('kpiDwt').innerText = total.toFixed(1) + " min";
+            const hoy = new Date();
+            const esMesActual = (hoy.getMonth() + 1) == m && hoy.getFullYear() == y;
             
-            let daysWithData = series.filter(val => parseFloat(val) > 0).length;
-            if(daysWithData === 0) daysWithData = 1; 
-            document.getElementById('kpiAvg').innerText = (total / daysWithData).toFixed(1) + " min/día";
+            // Si es el mes actual, dividimos por el día de hoy. Si es pasado, por los días del mes (series.length)
+            let divisor = esMesActual ? hoy.getDate() : (series.length || 1);
+            
+            document.getElementById('kpiDwt').innerText = total.toFixed(1) + " min";
+            document.getElementById('kpiAvg').innerText = (total / divisor).toFixed(1) + " min/día";
 
+            // Render Gráfica
             const options = {
-                series: [{ name: 'Minutos Perdidos', data: series }],
-                chart: { type: 'area', height: 350, foreColor: '#abb2bf', toolbar: { show: true } },
+                series: [{ name: 'Minutos', data: series }],
+                chart: { type: 'area', height: 350, foreColor: '#abb2bf' },
                 colors: ['#008ffb'],
-                fill: { type: 'gradient', gradient: { shadeIntensity: 1, opacityFrom: 0.4, opacityTo: 0.05 } },
                 stroke: { curve: 'smooth', width: 3 },
-                xaxis: { categories: labels, title: { text: 'Día del Mes' } },
-                yaxis: { title: { text: 'Minutos' } },
-                dataLabels: { enabled: false },
-                markers: { size: 4 },
-                tooltip: { theme: 'dark' },
-                grid: { borderColor: '#2d324a' }
+                xaxis: { categories: Array.from({length: series.length}, (_, i) => i + 1) }
             };
-
             if (mainChart) mainChart.destroy();
             mainChart = new ApexCharts(document.querySelector("#chartDowntime"), options);
             mainChart.render();
 
-        } catch (e) { 
-            console.error("Error Gráfico:", e);
-        }
-
-        // 2. OBTENER DATOS DE LA TABLA (zf_downtime_db.php)
-        const paramsTable = new URLSearchParams();
-        paramsTable.append('fecha', dato);
-        paramsTable.append('fecha_past', "");
-        paramsTable.append('room', 'DIV-B');
-        paramsTable.append('loc', 'AREA-ASRS');
-        paramsTable.append('fld', machine === "0" ? "" : machine);
-        paramsTable.append('type', "");
-        paramsTable.append('fecha1', "");
-        paramsTable.append('fecha2', "");
-
-        try {
+            // 2. Tabla
             const respTable = await fetch(API_TABLE, { 
                 method: 'POST', 
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: paramsTable.toString() 
+                body: commonParams.toString() 
             });
-            const dataTable = await respTable.json();
-            
+            const dataT = await respTable.json();
             const tbody = document.getElementById('tableBody');
             tbody.innerHTML = "";
-
-            // Índice 5 contiene las fechas. Si existe y tiene registros, los mostramos.
-            if (dataTable[5] && dataTable[5].length > 0) {
-                // Iteramos en reversa para mostrar los más recientes arriba
-                for (let i = dataTable[5].length - 1; i >= 0; i--) {
-                    const tr = document.createElement('tr');
-                    
-                    // Índices según el mapeo original del zf_data.js
-                    const orden = dataTable[10][i] || '-';
-                    const fecha = dataTable[5][i] || '-';
-                    const maq = dataTable[2][i] || '-';
-                    const tiempo = dataTable[9][i] || '0';
-                    const usuario = dataTable[11][i] || '-';
-                    const desc = dataTable[1][i] || '-';
-
-                    tr.innerHTML = `
-                        <td><span class="badge bg-secondary text-dark border border-dark">${orden}</span></td>
-                        <td>${fecha}</td>
-                        <td class="text-info fw-bold">${maq}</td>
-                        <td class="text-danger fw-bold">${tiempo}</td>
-                        <td>${usuario}</td>
-                        <td class="text-muted small">${desc}</td>
-                    `;
-                    tbody.appendChild(tr);
+            if (dataT[5]) {
+                for (let i = dataT[5].length - 1; i >= 0; i--) {
+                    tbody.innerHTML += `<tr>
+                        <td>${dataT[10][i] || '-'}</td>
+                        <td>${dataT[5][i] || '-'}</td>
+                        <td class="text-info">${dataT[2][i] || '-'}</td>
+                        <td class="text-danger fw-bold">${dataT[9][i] || '0'}</td>
+                        <td>${dataT[11][i] || '-'}</td>
+                        <td class="small text-muted">${dataT[1][i] || '-'}</td>
+                    </tr>`;
                 }
-            } else {
-                tbody.innerHTML = `<tr><td colspan="6" class="text-center text-muted py-4">No hay averías registradas para este periodo/máquina.</td></tr>`;
             }
-
-        } catch(e) {
-            console.error("Error Tabla:", e);
-            document.getElementById('tableBody').innerHTML = `<tr><td colspan="6" class="text-center text-danger py-4">Error al cargar registros. Verifica tu conexión de red.</td></tr>`;
-        } finally {
-            document.getElementById('loader').style.display = 'none';
-        }
+        } catch (e) { console.error(e); }
+        finally { document.getElementById('loader').style.display = 'none'; }
     }
-
-    // Arrancar la primera búsqueda al entrar a la página
     window.onload = refreshDashboard;
 </script>
-
 </body>
 </html>
